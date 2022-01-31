@@ -92,27 +92,27 @@ When installing multiple packages with apt-get you should:
 
 e.g.
 
-RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    unzip \
-    jq \
-    libpq-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libmcrypt-dev \
-    libbz2-dev \
-    libzip-dev \
-    libonig-dev \
-    openssl \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    libxml2-dev \
-    git \
-    cron \
-    && pecl channel-update pecl.php.net \
-    && pecl install apcu \
-    && pecl install redis \
-    && docker-php-ext-enable redis
+    RUN apt-get update && \
+        DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            unzip \
+            jq \
+            libpq-dev \
+            libfreetype6-dev \
+            libjpeg62-turbo-dev \
+            libmcrypt-dev \
+            libbz2-dev \
+            libzip-dev \
+            libonig-dev \
+            openssl \
+            libssl-dev \
+            libcurl4-openssl-dev \
+           libxml2-dev \
+            git \
+            cron \
+            && pecl channel-update pecl.php.net \
+            && pecl install apcu \
+            && pecl install redis \
+            && docker-php-ext-enable redis
 
 ### 8. The DockerHub problem
 
