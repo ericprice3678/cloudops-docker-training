@@ -14,16 +14,16 @@ Following this you will go from running a hello-world container to hosting a (ve
 ### 2: Run an nginx container locally with the default configuration
 
 1. Run `docker pull nginx:latest`
-2. Run `docker run --name my-nginx-container nginx:latest`
+2. Run `docker run nginx:latest`
 3. Connect to localhost in a web browser. This will return a `ERR_CONNECTION_REFUSED` because you have not mapped a traffic port to the container.
-4. To fix this CMD+C to kill your running container and run `docker run -p 8080:80 --name my-nginx-container nginx:latest`. This will map the localhost port 8080 to port 80 on the container.=
+4. To fix this CMD+C to kill your running container and run `docker run -p 8080:80 nginx:latest`. This will map the localhost port 8080 to port 80 on the container.=
 5. Connect to localhost again. It will now show the default nginx landing page.
 
 ### 3. Running in Detached mode and viewing running containers.
 
 In the previous example the docker container was run in the foreground, this is essentially running it as an active process. It is also possible to run Docker containers as a background process.
 
-1. Run `docker run -d -p 8080:80 --name my-nginx-container nginx:latest`.
+1. Run `docker run -d -p 8080:80 nginx:latest`.
 2. Now that this is running in detached mode you can view running containers status with the `docker ps` command.
 3. You can also run `docker ps -a` which will also show stopped containers in addition to running containers.
 4. You can use the `CONTAINER ID` of a container from `docker ps` to stop or kill the container with `docker stop $CONTAINER_ID` or `docker kill $CONTAINER_ID`.
