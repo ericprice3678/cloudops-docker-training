@@ -1,3 +1,5 @@
+To clear existing cache: `docker images --no-trunc --format '{{.ID}}' | xargs docker rmi`
+
 # Synopsis
 This is the first of 2 sessions on Docker usage. This session is going to mainly focus on basic Docker usage either locally or on GitPod.
 
@@ -32,7 +34,8 @@ In the previous example the docker container was run in the foreground, this is 
     - This will show whatever the console would output in foreground mode.
     - You can do this with a name instead of the container ID if desired.
 6. You can also use `docker exec` to execute commands on a running container.
-    - e.g. run `docker exec -it my-nginx-container bash` to open an interactive bash shell on the container.
+    - e.g. run `docker exec -it $Container_ID bash` to open an interactive bash shell on the container.
+7. Kill your container with `docker kill`
 
 ### 4. Run an nginx container with volume mapping
 
