@@ -36,6 +36,7 @@ In the previous example the docker container was run in the foreground, this is 
 6. You can also use `docker exec` to execute commands on a running container.
     - e.g. run `docker exec -it $Container_ID bash` to open an interactive bash shell on the container.
 7. Kill your container with `docker kill`
+8. To terminate/delete all stopped containers run `docker container prune`
 
 ### 4. Run an nginx container with volume mapping
 
@@ -68,7 +69,7 @@ In order to speed up builds Docker will cache layers locally by default. In esse
 To see this in action:
 
 1. Open `Dockerfile`.
-2. Commend out `COPY index.html /www/data/index.html` and uncomment `COPY /layer-cache-example/cowbell.html /www/data/index.html`.
+2. Comment out `COPY index.html /www/data/index.html` and uncomment `COPY /layer-cache-example/cowbell.html /www/data/index.html`.
 3. Re-run your `docker build` command.
 4. You should see that the previously executed layers are built using the cache and the new copy COPY command is not.
 5. Run the image with `docker run -p 8080:80 $yourname:nginx`
@@ -76,7 +77,7 @@ To see this in action:
 
 ### 7. Entrypoints
 
-Sometimes you may find yourself in a situation where you need to execute commands on a container after it is built, but before the application starts. You can do this by using an ENTRYPOINT command to execute a script that might set environment-specific information or perform some other command that the application needs before it tries to start.
+Sometimes you may find yourself in a situation where you need to execute commands on a container after it is built, but before the application starts. You can do this by using an ENTRYPOINT layer to execute a script that might set environment-specific information or perform some other command that the application needs before it tries to start.
 
 An example of something to use an ENTRYPOINT for would be to programmatically retrieve values from Secrets Manager or Parameter Store.
 

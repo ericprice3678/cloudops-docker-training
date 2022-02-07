@@ -1,8 +1,17 @@
 # Use the nginx:latest image from Dockerhub
-FROM nginx:latest
+FROM mynginxrepo:current
 
 # Runs an apt-get update command to update packages
-RUN apt-get update
+RUN apt-get update \
+    && apt-get upgrade
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    unzip \
+    jq \
+    libpq-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev
 
 # Copies nginx.conf from the local directory into /etc/nginx/conf.d/default.conf inside the container image
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -18,6 +27,5 @@ COPY index.html /www/data/index.html
 COPY ./entrypoint-example/ /usr/bin/entrypoint/
 RUN chmod +x /usr/bin/entrypoint/entrypoint.sh
 ENTRYPOINT ["/usr/bin/entrypoint/entrypoint.sh"]
-
 
 CMD ["nginx", "-g", "daemon off;"]
